@@ -2,6 +2,25 @@
 
 <PageTitle>Home</PageTitle>
 
-<h1>Hello, world!</h1>
+<h1>AI-Powered Image Analysis</h1>
 
-Welcome to your new app.
+<p>Insert image URL or type an image prompt:</p>
+
+<textarea @blind="urlOrPrompt" rows="1" cols="50" placeholder="Enter URL to analyze or Prompt to generate image."></textarea>
+<button @onclick="AnalyzeImage">Analyze Image</button>
+<button @onclick="GenerateImage">Analyze Image</button>
+
+@code
+{
+    string urlOrPrompt = "";
+
+    void AnalyzeImage()
+    {
+        // Call the AI-powered image analysis service
+    }
+
+    void GenerateImage()
+    {
+        // Call the AI-powered image generation service
+    }
+}
