@@ -4,6 +4,7 @@
 @using Azure.AI.Vision.ImageAnalysis;
 @using System;
 @rendermode InteractiveServer
+@inject ApiService ApiService
 
 <PageTitle>Home</PageTitle>
 
@@ -21,8 +22,8 @@
 
     void AnalyzeImage()
     {
-        string endpoint = ;
-        string key = ;
+        string key = ApiService.ApiKey ?? string.Empty;
+        string endpoint = ApiService.EndpointUrl ?? string.Empty;
 
         ImageAnalysisClient client = new ImageAnalysisClient(
             new Uri(endpoint),
