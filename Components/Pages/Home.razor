@@ -1,4 +1,10 @@
 ﻿@page "/"
+@using Azure;
+@using Azure.AI.Vision;
+@using Azure.AI.Vision.ImageAnalysis;
+@using System;
+@rendermode InteractiveServer
+@inject ApiService ApiService
 
 <PageTitle>Home</PageTitle>
 
@@ -6,19 +12,71 @@
 
 <p>Insert image URL or type an image prompt:</p>
 
-<textarea @blind="urlOrPrompt" rows="1" cols="50" placeholder="Enter URL to analyze or Prompt to generate image."></textarea>
+<textarea @bind="urlOrPrompt" rows="3" cols="50" placeholder="Enter URL to analyze or Prompt to generate image."></textarea>
 <button @onclick="AnalyzeImage">Analyze Image</button>
-<button @onclick="GenerateImage">Analyze Image</button>
+<button @onclick="GenerateImage">Generate Image</button>
+
+<p>@caption</p>
 
 @code
 {
     string urlOrPrompt = "";
+    
+    string caption = "";
 
     void AnalyzeImage()
     {
-        // Call the AI-powered image analysis service
-    }
+        string key = ApiService.ApiKey ?? string.Empty;
+        string endpoint = ApiService.EndpointUrl ?? string.Empty;
 
+        ImageAnalysisClient client = new ImageAnalysisClient(
+            new Uri(endpoint),
+            new AzureKeyCredential(key));
+
+        // Check if urlOrPrompt is not empty and is a valid Uri
+        if (Uri.TryCreate(urlOrPrompt, UriKind.Absolute, out var imageUri))
+        {
+            ImageAnalysisResult result = client.Analyze(
+                new Uri(urlOrPrompt),
+                VisualFeatures.Caption | VisualFeatures.Read,
+                new ImageAnalysisOptions { GenderNeutralCaption = true });
+        
+            Console.WriteLine("Image analysis results:");
+            Console.WriteLine(" Caption:");
+            Console.WriteLine($"   '{result.Caption.Text}', Confidence {result.Caption.Confidence:F4}");
+
+            if (result.Caption != null) 
+            {
+                caption = result.Caption.Text;
+            }
+
+            Console.WriteLine(" Read:");
+            foreach (DetectedTextBlock block in result.Read.Blocks)
+                foreach (DetectedTextLine line in block.Lines)
+                {
+                    Console.WriteLine($"   Line: '{line.Text}', Bounding Polygon: [{string.Join(" ", line.BoundingPolygon)}]");
+                    foreach (DetectedTextWord word in line.Words)
+                    {
+                        Console.WriteLine($"     Word: '{word.Text}', Confidence {word.Confidence.ToString("#.####")}, Bounding Polygon: [{string.Join(" ", word.BoundingPolygon)}]");
+                    }
+                }
+        }
+        else
+        {
+            caption = "Invalid URL or Prompt";
+        }
+    }
+    void Main()
+    {
+        try
+        {
+            AnalyzeImage();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+    }
     void GenerateImage()
     {
         // Call the AI-powered image generation service
