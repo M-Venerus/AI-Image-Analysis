@@ -8,15 +8,27 @@
 
 <PageTitle>Home</PageTitle>
 
-<h1>AI-Powered Image Analysis</h1>
+<div class="home-page">
+    <div class="main-content">
+        <div class="big-text">
+            <h1 class="name">Michael Venerus</h1>
+            <span class="line"></span>
+            <h1 class="title">AI-Powered Image Analysis and Image Generation</h1>
+        </div>
 
-<p>Insert image URL or type an image prompt:</p>
+        <p class="instructions">To analyze an image, paste the image's URL in the text area below and click 'Analyze Image'. Image generation capabilities not yet available, coming soon.</p>
 
-<textarea @bind="urlOrPrompt" rows="3" cols="50" placeholder="Enter URL to analyze or Prompt to generate image."></textarea>
-<button @onclick="AnalyzeImage">Analyze Image</button>
-<button @onclick="GenerateImage">Generate Image</button>
+        <textarea class="textbox"@bind="urlOrPrompt" rows="3" cols="50" placeholder="Enter an image URL to analyze."></textarea>
+        <br>
+        <div class="buttons">
+            <button @onclick="AnalyzeImage">Analyze Image</button>
+            <button @onclick="GenerateImage">Generate Image</button>
+        </div>
 
-<p>@caption</p>
+    <p class="text-caption">@caption</p>
+
+    </div>
+</div>
 
 @code
 {
