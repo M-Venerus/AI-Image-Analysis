@@ -16,10 +16,10 @@
             <h1 class="title">AI-Powered Image Analysis</h1>
         </div>
         <div class="hero-title-div">
-            <p class="hero-title">Generate a text description of your image.</p>
+            <p class="hero-title">Generate a text description of an online image.</p>
         </div>
         <div class="analysis-result">
-            <img src="@imageSource" alt="" class="image" onerror="this.onerror=null;this.src='images/sample-image.png';"/>
+            <img src="@imageSource" alt="" class="image" onerror="this.onerror=null;this.src='images/person-dog-3.png';"/>
             <div class="analysis-text-container">
                 @if (string.IsNullOrEmpty(caption))
                 {
@@ -31,7 +31,7 @@
                 }
             </div>
         </div>
-        <p class="instructions">Paste the image's URL in the text area below and click 'Analyze Image'</p>
+        <p class="instructions">Paste a public image URL in the text area below:</p>
 
         <textarea class="textbox"@bind="urlOrPrompt" rows="3" cols="90"></textarea>
         <br>
@@ -50,7 +50,7 @@
 
     void Reset()
     {
-        imageSource = "images/sample-image.png";
+        imageSource = "images/person-dog-3.png";
         urlOrPrompt = "";
         caption = string.Empty;
     }
@@ -95,7 +95,7 @@
         }
         else
         {
-            caption = "Invalid URL or Prompt";
+            caption = "Invalid URL";
         }
     }
     void Main()
