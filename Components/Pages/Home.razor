@@ -24,8 +24,16 @@
             <button @onclick="AnalyzeImage">Analyze Image</button>
             <button @onclick="GenerateImage">Generate Image</button>
         </div>
+        <div class=reset-button>
+            <button @onclick="Reset">Reset</button>
+        </div>
 
-    <p class="text-caption">@caption</p>
+        <div class="analysis-result">
+            <img src="@urlOrPrompt" alt="" class="image" onerror="this.onerror=null;this.src='images/blank.png';"/>
+            <div class="analysis-text-container">
+                <p class="text-caption">@caption</p>
+            </div>
+        </div>
 
     </div>
 </div>
@@ -35,6 +43,12 @@
     string urlOrPrompt = "";
     
     string caption = "";
+
+    void Reset()
+    {
+        urlOrPrompt = string.Empty;
+        caption = string.Empty;
+    }
 
     void AnalyzeImage()
     {

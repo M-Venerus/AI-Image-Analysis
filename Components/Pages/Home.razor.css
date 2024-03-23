@@ -16,8 +16,32 @@
     margin-top: 8rem;
 }
 
+.analysis-result {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.analysis-result img {
+    width: 400px;
+}
+
+.analysis-text-container {
+    width: 400px;
+}
+
+.text-caption {
+    font-size: 2rem;
+    font-weight: 500;
+    margin: 0 25px 0;
+    text-align: center;
+    text-transform: capitalize;
+}
+
 .big-text {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     text-align: center;
     margin-bottom: 6rem;
@@ -58,20 +82,24 @@ h1.title {
     justify-content: center;
     gap: 1rem;
     margin-top: 0rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
-p.text-caption {
-    font-size: 2rem;
-    font-weight: 500;
-    margin-top: 0.5rem;
-}
-
-button {
+.buttons button {
     font-size: 1.25rem;
     padding: 0.5rem 1rem;
     border-radius: 0.25rem;
     background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.reset-button button {
+    font-size: 1.25rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    background-color: #5e5e5e;
     color: white;
     border: none;
     cursor: pointer;
