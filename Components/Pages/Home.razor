@@ -13,31 +13,51 @@
         <div class="big-text">
             <h1 class="name">Michael Venerus</h1>
             <span class="line"></span>
-            <h1 class="title">AI-Powered Image Analysis and Image Generation</h1>
+            <h1 class="title">AI-Powered Image Analysis</h1>
         </div>
+        <div class="hero-title-div">
+            <p class="hero-title">Generate a text description of your image.</p>
+        </div>
+        <div class="analysis-result">
+            <img src="@imageSource" alt="" class="image" onerror="this.onerror=null;this.src='images/sample-image.png';"/>
+            <div class="analysis-text-container">
+                @if (string.IsNullOrEmpty(caption))
+                {
+                    <p class="alternate-text">A Person Sitting On A Bench Beside A Campfire With A Dog</p>
+                }
+                else
+                {
+                    <p class="caption-text">@caption</p>
+                }
+            </div>
+        </div>
+        <p class="instructions">Paste the image's URL in the text area below and click 'Analyze Image'</p>
 
-        <p class="instructions">To analyze an image, paste the image's URL in the text area below and click 'Analyze Image'. Image generation capabilities not yet available, coming soon.</p>
-
-        <textarea class="textbox"@bind="urlOrPrompt" rows="3" cols="50" placeholder="Enter an image URL to analyze."></textarea>
+        <textarea class="textbox"@bind="urlOrPrompt" rows="3" cols="90"></textarea>
         <br>
         <div class="buttons">
             <button @onclick="AnalyzeImage">Analyze Image</button>
-            <button @onclick="GenerateImage">Generate Image</button>
+            <button @onclick="Reset">Reset</button>
         </div>
-
-    <p class="text-caption">@caption</p>
-
     </div>
 </div>
 
 @code
 {
     string urlOrPrompt = "";
-    
+    string imageSource = "";
     string caption = "";
+
+    void Reset()
+    {
+        imageSource = "images/sample-image.png";
+        urlOrPrompt = "";
+        caption = string.Empty;
+    }
 
     void AnalyzeImage()
     {
+        imageSource = urlOrPrompt;
         string key = ApiService.ApiKey ?? string.Empty;
         string endpoint = ApiService.EndpointUrl ?? string.Empty;
 
@@ -91,6 +111,7 @@
     }
     void GenerateImage()
     {
-        // Call the AI-powered image generation service
+        // Saving this function for a future deployment of this app that includes image generation. This will call
+        // the OpenAI Azure image generation service through DALLE. Currently this service is unavailable for public use.
     }
 }
