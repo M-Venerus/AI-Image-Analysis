@@ -14,19 +14,23 @@
     align-items: center;
     text-align: center;
     max-width: 1000px;
-    margin-top: 5rem;
+    margin-top: 4rem;
 }
 
 .analysis-result {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10rem;
+    margin-bottom: 6rem;
+    border: 2px dashed rgb(192, 190, 190);
+    border-radius: 20px;
+
 }
 
 .analysis-result img {
     width: 500px;
-    border-radius: 30px;
+    border-radius: 20px;
+
 }
 
 .analysis-text-container {
@@ -55,18 +59,19 @@
     flex-direction: row;
     justify-content: space-between;
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     align-items: center;
     width: 800px;
 }
 
 .instructions {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     margin-top: 1rem;
     line-height: 100%;
-    font-weight: 500;
+    font-weight: 600;
     text-align: center;
     margin-bottom: 1rem;
+    color: rgb(39, 39, 39);
 }
 
 h1.name {
@@ -91,7 +96,7 @@ h1.title {
 }
 
 .hero-title-div {
-    margin: 0 0 8rem 0;
+    margin: 0 0 6rem 0;
     width: 800px;
 }
 
@@ -129,13 +134,20 @@ padding-right: 2rem;
 padding-left: 2rem;
 }
 
-.sample-text-caption {
-    width: 240px;
-    font-size: 1.5rem;
-    font-weight: 500;
-    margin: 10px 0 0 0;
-    text-align: center;
-    line-height: 120%;
+.alternate-text {
+    color: rgba(0, 0, 0, 0.322);
+}
+
+.textbox {
+    padding: 5px;
+    font-size: 16px;
+    border-width: 1px;
+    border-color: #838383;
+    background-color: #FFFFFF;
+    color: #474747;
+    border-style: solid;
+    border-radius: 7px;
+    box-shadow: 0px 0px 5px rgba(66,66,66,.75);
 }
 
 .buttons {
@@ -155,6 +167,8 @@ padding-left: 2rem;
     border: none;
     cursor: pointer;
     width: 180px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 6px rgba(66, 66, 66, 0.452);
 }
 
 .buttons button:nth-child(2) {
