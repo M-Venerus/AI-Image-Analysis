@@ -16,7 +16,6 @@ builder.Services.AddSingleton<ApiService>();
 var secretClient = new SecretClient(new Uri(builder.Configuration["VaultUri"]), new DefaultAzureCredential());
 builder.Configuration.AddAzureKeyVault(secretClient, new KeyVaultSecretManager());
 
-
 var app = builder.Build();
 
 app.UseHttpsRedirection();
